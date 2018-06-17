@@ -63,7 +63,7 @@ var i=0,x,z=0,winA=0,winB=0,flagA,flagB,daan=0,count=1,z=0;
  
 function check()
 {
-
+ var x=document.getElementById("rollit").innerText ;
 if(x==6)
 daan=1;
 else if(document.getElementById('turn').innerHTML=="Turn of B")
@@ -89,7 +89,8 @@ daan=1;
 
 
 function move(text)
-{var y;
+{ var x=document.getElementById("rollit").innerText ;
+var y;
 if(Number(text[1]+text[2])>=10)
 y=Number(text[1]+text[2])+x;
 else
