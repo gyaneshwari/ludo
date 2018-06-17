@@ -1,8 +1,10 @@
-var i=0,x,z=0,winA=0,winB=0,flagA,flagB,daan=0,count=1,z=0;
+var i=0,x,z=0,winA=0,winB=0,flagA,flagB,can=0,count=1;
 
  function myFunction() {
-    var x = Math.floor((Math.random() * 6) + 1);
-    document.getElementById("rollit").innerText = x;
+  if(can==0)
+  {
+    x = Math.floor((Math.random() * 6) + 1);
+    document.getElementById("rollit").innerHTML = x;
     if(i==1)
 		x!=6;
 	if((i%2==0)&&(x!=6))
@@ -13,8 +15,34 @@ var i=0,x,z=0,winA=0,winB=0,flagA,flagB,daan=0,count=1,z=0;
 		i++;
 	flagA=0;
 	flagB=0;
+}
 	 check();
  }
+
+function check()
+{
+if(x==6)
+can=1;
+else if(document.getElementById('turn').innerHTML=="Turn of B")
+{
+if(document.getElementById('lockerA').innerHTML=="2A")
+can=0;
+else if((document.getElementById('lockerA').innerHTML=="1A")&&(winA==1))
+can=0;
+else if((document.getElementById('lockerA').innerHTML=="1A")||(document.getElementById('lockerA').innerHTML=="0A"))
+can=1;
+}
+else if(document.getElementById('turn').innerHTML=="Turn of A")
+{if(document.getElementById('lockerB').innerHTML=="2B")
+can=0;
+else if((document.getElementById('lockerB').innerHTML=="1B")&&(winB==1))
+can=0;
+else if((document.getElementById('lockerB').innerHTML=="1B")||(document.getElementById('lockerB').innerHTML=="0B"))
+can=1;
+
+}
+
+}
 
  function lockA() {
 	 var x=document.getElementById("rollit").innerText ;
@@ -38,58 +66,10 @@ var i=0,x,z=0,winA=0,winB=0,flagA,flagB,daan=0,count=1,z=0;
 	 }
  }
  
- function lockB() {
-	var x=document.getElementById("rollit").innerText;
-	 if((document.getElementById("turn").innerHTML=="Turn of B")&&(x==6)){
-		 if(document.getElementById("lockerB").innerText=="2B")
-		 {  
-			 document.getElementById("lockerB").innerHTML="1B";
-			 document.getElementById("r15").innerHTML="1B";
-		 }
-		else if(document.getElementById("lockerB").innerText=="1B"){
-			 if(document.getElementById("r15").innerHTML=="1B"){
-				 document.getElementById("lockerB").innerHTML=" ";
-			     document.getElementById("r15").innerHTML="2B";
-			 }
-			  else if(document.getElementById("r15").innerHTML==" "){
-				 document.getElementById("lockerB").innerHTML=" ";
-			     document.getElementById("r15").innerHTML="1B";
-			 }
-				 
-		 }
-	 }
- }
  
  
-function check()
-{
- var x=document.getElementById("rollit").innerText ;
-if(x==6)
-daan=1;
-else if(document.getElementById('turn').innerHTML=="Turn of B")
-{
-if(document.getElementById('lockerA').innerHTML=="2A")
-daan=0;
-else if((document.getElementById('lockerA').innerHTML=="1A")&&(winA==1))
-daan=0;
-else if((document.getElementById('lockerA').innerHTML=="1A")||(document.getElementById('lockerA').innerHTML=="0A"))
-daan=1;
-}
-else if(document.getElementById('turn').innerHTML=="Turn of A")
-{if(document.getElementById('lockerB').innerHTML=="2B")
-daan=0;
-else if((document.getElementById('lockerB').innerHTML=="1B")&&(winB==1))
-daan=0;
-else if((document.getElementById('lockerB').innerHTML=="1B")||(document.getElementById('lockerB').innerHTML=="0B"))
-daan=1;
-
-}
-
-}
-
-
 function move(text)
-{ var x=document.getElementById("rollit").innerText ;
+{ 
 var y;
 if(Number(text[1]+text[2])>=10)
 y=Number(text[1]+text[2])+x;
@@ -100,7 +80,7 @@ if((((document.getElementById('turn').innerHTML=="Turn of B")&&(x!=6))||((docume
 {
 if((document.getElementById(text).innerHTML=="1A")||(document.getElementById(text).innerHTML=="2A"))
    {flagA=1;
-    daan=0;
+    can=0;
 
  if(y>28)
       {
@@ -205,7 +185,7 @@ y=y-28;
 var m=y-x;
 if((document.getElementById(text).innerHTML=="1B")||(document.getElementById(text).innerHTML=="2B"))
    {flagB=1;
-   daan=0;
+   can=0;
    
     
      if(y==14)
@@ -285,5 +265,26 @@ else if((document.getElementById('r'+y).innerHTML=="2A"))
 if(winB==2)
 window.alert("congrats B wins");
 }
-}
+}function lockB() {
+  var x=document.getElementById("rollit").innerText;
+   if((document.getElementById("turn").innerHTML=="Turn of B")&&(x==6)){
+     if(document.getElementById("lockerB").innerText=="2B")
+     {  
+       document.getElementById("lockerB").innerHTML="1B";
+       document.getElementById("r15").innerHTML="1B";
+     }
+    else if(document.getElementById("lockerB").innerText=="1B"){
+       if(document.getElementById("r15").innerHTML=="1B"){
+         document.getElementById("lockerB").innerHTML=" ";
+           document.getElementById("r15").innerHTML="2B";
+       }
+        else if(document.getElementById("r15").innerHTML==" "){
+         document.getElementById("lockerB").innerHTML=" ";
+           document.getElementById("r15").innerHTML="1B";
+       }
+         
+     }
+   }
+ }
+ 
 
